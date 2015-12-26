@@ -13,6 +13,6 @@ class Films(models.Model):
     actrices = models.CharField(max_length=1000)
     appreciation = models.CharField(max_length=100)
     scenario = models.CharField(max_length=100)
-   # provenance = models.CharField(max_length=200)
+    provenance = models.CharField(max_length=200)
     photographie = models.CharField(max_length=100)
     musique = models.CharField(max_length=100)

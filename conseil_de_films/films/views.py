@@ -8,6 +8,7 @@ from django.http import HttpResponse
 from django.shortcuts import render
 
 def recuperation_donnes(request):
+    
     #A partir du tableau excel creation d'un tableau python pour la base de donnees
     base = xlrd.open_workbook('films/Base_films.xls')
     tab = base.sheet_by_name(u'Feuil1')

@@ -7,6 +7,8 @@ from films.models import Films
 from django.http import HttpResponse
 from django.shortcuts import render
 
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
 
 def create_DB(request):
     
@@ -33,8 +35,9 @@ def create_DB(request):
     return render(request, 'films/data_base.html')
 
 
-def preference(request, categorie, choix):
-    
+def preference(request):
+    choix = 'usa'
+    categorie = 'pays' 
     L=[]
     my_filter = {}
     my_filter[categorie] = choix 
@@ -43,3 +46,14 @@ def preference(request, categorie, choix):
         L.append(film.titre_original)
         
     return render(request, 'films/choix.html', locals())
+
+@api_view(['GET', 'POST'])
+def api_formulaire(request):
+    params = request.GET
+    L=[]
+    my_filter = {}
+    my_filter[params['categorie']] = params['choix'] 
+    ma_liste = Films.objects.filter(**my_filter)
+    for film in ma_liste:
+        L.append(film.titre_original)
+    return Response(L)

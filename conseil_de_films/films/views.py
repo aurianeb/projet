@@ -55,5 +55,22 @@ def api_formulaire(request):
     my_filter[params['categorie']] = params['choix'] 
     ma_liste = Films.objects.filter(**my_filter)
     for film in ma_liste:
-        L.append(film.titre_original)
-    return Response(L)
+        L.append([film.titre_original,
+                  film.titre_francais,
+                  film.realisateur,
+                  film.couleur,
+                  str(film.annee),
+                  film.pays,
+                  film.genre,
+                  film.acteurs,
+                  film.actrices,
+                  film.appreciation,
+                  film.scenario,
+                  film.provenance,
+                  film.photographie,
+                  film.musique])
+    resp={
+            "data":
+            L
+    }
+    return Response(resp)

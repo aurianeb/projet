@@ -54,7 +54,7 @@ def api_formulaire(request):
     my_filter = {}
    # my_filter[params['categorie_pays']] = params['choix_pays'] 
     #ma_liste = Films.objects.filter(**my_filter)
-    ma_liste = Films.objects.filter(pays = params['choix_pays'], genre = params['choix_genre'])
+    ma_liste = Films.objects.filter(pays = params['choix_pays']) #, genre = params['choix_genre'])
     for film in ma_liste:
         L.append([film.titre_original,
                   film.titre_francais,

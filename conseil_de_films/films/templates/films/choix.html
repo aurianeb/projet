@@ -22,7 +22,7 @@
 
     <!-- DataTables Responsive CSS -->
 
-    <!-- Timeline CSS -->
+    <!-- Timeline CSS 
     <link href="{% static 'dist/css/timeline.css' %}" rel="stylesheet">
 
     <!-- Custom CSS -->
@@ -90,19 +90,29 @@
                         <div class="panel-body">
                             <form role="form">
                                 <div class="form-group">
-                                    <label> Categorie </label>
-                                    <select class="form-control" id="categorie">
+                                    <label> Pays </label>
+                                    <select class="form-control" id="categorie_pays">
                                         <option>pays</option>
                                     </select>
-                                    <label> Choix</label>
-                                    <select class="form-control" id="choix">
+                                    <label> Pays </label>
+                                    <select class="form-control" id="choix_pays">
                                         <option>USA</option>
                                         <option> Argentine</option>
                                         <option> Australie</option>
                                         <option> Autriche</option>
                                         <option> F</option>
                                     </select>
-									
+									<label> Genre </label>
+                                    <select class="form-control" id="categorie_genre">
+                                        <option>genre</option>
+                                    </select>
+                                    <label> Genre </label>
+                                    <select class="form-control" id="choix_genre">
+                                        <option>com.</option>
+                                        <option>doc.</option>
+                                        <option>western</option>
+                                    </select>
+                                    
                                 </div>
                                     <button type="button" onclick="getFormValue()" class="btn btn-large btn-primary"> Envoyer </button>
                             </form>
@@ -145,7 +155,7 @@
                                                         <th>TItre francais</th>
                                                         <th>Realisateur</th>
                                                         <th>Couleur</th>
-                                                        <th>some data</th>
+                                                        <th>Genre</th>
                                                         <th>some data</th>
                                                         <th>some data</th>
                                                         <th>some data</th>
@@ -205,13 +215,17 @@
         });
 
         function getFormValue(){
-            var choix = $("#choix").val()
-            var categorie = $("#categorie").val()
-            console.log(choix)
-            console.log(categorie)
+            var choix_pays = $("#choix_pays").val()
+            var categorie_pays = $("#categorie_pays").val()
+            var choix_genre = $("#choix_genre").val()
+            var categorie_genre = $("#categorie_genre").val()
+            console.log(choix_pays)
+            console.log(categorie_pays)
+            console.log(choix_genre)
+            console.log(categorie_genre)
             $.ajax({
                 url:'api/formulaire/',
-                data: {'categorie': categorie, 'choix': choix}, 
+                data: {'categorie_pays': categorie_pays, 'choix_pays': choix_pays, 'categorie_genre': categorie_genre, 'choix_genre': choix_genre}, 
                 success : function(resultat, statut){ // code_html contient le HTML renvoyé
                     var data = resultat.responseText
                     console.log(data)

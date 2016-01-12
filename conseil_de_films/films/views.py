@@ -36,14 +36,14 @@ def create_DB(request):
 
 
 def preference(request):
-    choix = 'usa'
-    categorie = 'pays' 
-    L=[]
-    my_filter = {}
-    my_filter[categorie] = choix 
-    ma_liste = Films.objects.filter(**my_filter)
-    for film in ma_liste:
-        L.append(film.titre_original)
+    #choix = 'usa'
+    #categorie = 'pays' 
+   # L=[]
+    #my_filter = {}
+    #my_filter[categorie] = choix 
+    #ma_liste = Films.objects.filter(**my_filter)
+    #for film in ma_liste:
+     #   L.append(film.titre_original)
         
     return render(request, 'films/choix.html', locals())
 
@@ -52,8 +52,9 @@ def api_formulaire(request):
     params = request.GET
     L=[]
     my_filter = {}
-    my_filter[params['categorie']] = params['choix'] 
-    ma_liste = Films.objects.filter(**my_filter)
+   # my_filter[params['categorie_pays']] = params['choix_pays'] 
+    #ma_liste = Films.objects.filter(**my_filter)
+    ma_liste = Films.objects.filter(pays = params['choix_pays'], genre = params['choix_genre'])
     for film in ma_liste:
         L.append([film.titre_original,
                   film.titre_francais,

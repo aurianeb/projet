@@ -170,6 +170,7 @@
                                     </select>
                                 </div>
                                     <button type="button" onclick="getFormValue()" class="btn btn-large btn-primary"> Envoyer </button>
+									<button type="button" onclick="affiche()" class="btn btn-large btn-primary">  afficher autre fenetre </button>
                             </form>
                         </div>
                         <!-- /.panel-body -->
@@ -265,6 +266,11 @@
     <script src="{% static 'dist/js/sb-admin-2.js' %}"></script>
 
     <script type="text/javascript">
+	
+        var titre_francais;
+		var realisateur;
+
+					
         $(document).ready(function() {
             
         });
@@ -286,10 +292,18 @@
                     console.log(data)
                     console.log(resultat)
                     populateDB(resultat['data'])
+
+                    titre_francais = resultat.titre_francais;
+					realisateur = resultat.realisateur;
                 }
             })
         
         }
+
+		function affiche(){
+			alert("le fils proposé est "+titre_francais+" un film de "+ realisateur);
+		}
+		
         function populateDB(dataDB){
             console.log(dataDB)
             $('#dataTable').DataTable( {

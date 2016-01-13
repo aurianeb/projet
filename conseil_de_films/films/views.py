@@ -4,6 +4,7 @@ import xlrd
 from films.models import Films
 
 
+from random import *
 from django.http import HttpResponse
 from django.shortcuts import render
 
@@ -73,9 +74,13 @@ def api_formulaire(request):
                   film.provenance,
                   film.photographie,
                   film.musique])
+                  
+    random=randint(0,len(L)-1)
 
     resp={
-            "data":
-            L
+            "data":L  ,          
+            "titre_francais":L[random][1],
+            "realisateur":L[random][2]
+    
     }
     return Response(resp)

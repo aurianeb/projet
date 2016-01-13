@@ -57,7 +57,7 @@ def api_formulaire(request):
     if 'choix_pays' == 'Peu importe !':
       L=Films.objects.all()
     else :
-      ma_liste = Films.objects.filter(pays = params['choix_pays'], genre = params['choix_genre'])
+      ma_liste = Films.objects.filter(pays__contains=params['choix_pays'], genre__contains=params['choix_genre']) #pays = params['choix_pays'], genre = params['choix_genre'])
       for film in ma_liste:
         L.append([film.titre_original,
                   film.titre_francais,

@@ -95,11 +95,11 @@
                                     </select> -->
                                     <label> Pays </label>
                                     <select class="form-control" id="choix_pays">
-                                        <option>Peu importe !</option>
+                                        <option> </option>
                                         <option>Argentine</option>
                                         <option>Australie</option>
                                         <option>Autriche</option>
-                                        <option>Belge</option>
+                                        <option>Belgique</option>
                                         <option>Benelux</option>
                                         <option>Brésil</option>
                                         <option>Canada</option>
@@ -107,7 +107,6 @@
                                         <option>Danemark</option>
                                         <option>Espagne</option>
                                         <option>France</option>
-                                        <option>GR</option>
                                         <option>Grande Bretagne</option>
                                         <option>Grèce</option>
                                         <option>Hong-Kong</option>
@@ -133,16 +132,13 @@
                                     </select> -->
                                     <label> Genre </label>
                                     <select class="form-control" id="choix_genre">
-                                        <option>Peu importe !</option>
-                                        <option>Guerre</option>
-                                        <option>?</option>
+                                        <option> </option>
                                         <option>Animalier</option>
                                         <option>Aventure</option>
                                         <option>Biographie</option>
                                         <option>Boxe</option>
                                         <option>Catastrophe</option>
                                         <option>Comique</option>
-                                        <option>Érotique</option>
                                         <option>Dessin animé</option>
                                         <option>Documentaire</option>
                                         <option>Dramatique</option>
@@ -168,7 +164,45 @@
                                         <option>TV</option>
                                         <option>Western</option>
                                     </select>
-                                </div>
+                                    <label> Couleur </label>
+                                    <select class="form-control" id="choix_couleur">
+                                        <option> </option>  
+                                        <option>Couleur</option>
+                                        <option>Noir et Blanc</option>
+                                    </select>
+                                    <label> Entre... </label>
+                                    <select class="form-control" id="choix_datemin">
+                                        <option>1910</option>
+                                        <option>1920</option>
+                                        <option>1930</option>
+                                        <option>1940</option>
+                                        <option>1950</option>
+                                        <option>1960</option>
+                                        <option>1970</option>
+                                        <option>1980</option>
+                                        <option>1990</option>
+                                        <option>2000</option>
+                                        <option>2010</option>
+                                    </select>
+                                    <label> Et... </label>
+                                    <select class="form-control" id="choix_datemax">
+                                        <option>2016</option>
+                                        <option>2010</option>
+                                        <option>2000</option>
+                                        <option>1990</option>
+                                        <option>1980</option>
+                                        <option>1970</option>
+                                        <option>1960</option>
+                                        <option>1950</option>
+                                        <option>1940</option>
+                                        <option>1930</option>
+                                        <option>1920</option>
+                                    </select>
+
+                                    <label>Un acteur, une actrice préféré ?</label>
+                                        <input type="text" class="form-control" id="choix_act1">
+                                    </div>
+
                                     <button type="button" onclick="getFormValue()" class="btn btn-large btn-primary"> Envoyer </button>
 									<button type="button" onclick="affiche()" class="btn btn-large btn-primary">  afficher autre fenetre </button>
                             </form>
@@ -276,17 +310,23 @@
         });
         function getFormValue(){
             var choix_pays = $("#choix_pays").val()
-           // var categorie_pays = $("#categorie_pays").val()
             var choix_genre = $("#choix_genre").val()
-            //var categorie_genre = $("#categorie_genre").val()
+            var choix_couleur = $("#choix_couleur").val()
+            var choix_datemin = $("#choix_datemin").val()
+            var choix_datemax = $("#choix_datemax").val()
+            var choix_act1 = $("#choix_act1").val()
+
+
             console.log(choix_pays)
-          //  console.log(categorie_pays)
             console.log(choix_genre)
-            //console.log(categorie_genre)
+            console.log(choix_couleur)
+            console.log(choix_datemin)
+            console.log(choix_datemax)
+            console.log(choix_act1)
+
             $.ajax({
                 url:'api/formulaire/',
-                data: { 'choix_pays': choix_pays,'choix_genre': choix_genre}, 
-               // data: {'categorie_pays': categorie_pays, 'choix_pays': choix_pays, 'categorie_genre': categorie_genre, 'choix_genre': choix_genre}, 
+                data: { 'choix_pays': choix_pays,'choix_genre': choix_genre, 'choix_couleur': choix_couleur, 'choix_datemin': choix_datemin, 'choix_datemax': choix_datemax, 'choix_act1': choix_act1}, 
                 success : function(resultat, statut){ // code_html contient le HTML renvoyé
                     var data = resultat.responseText
                     console.log(data)

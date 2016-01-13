@@ -37,14 +37,6 @@ def create_DB(request):
 
 
 def preference(request):
-    #choix = 'usa'
-    #categorie = 'pays' 
-   # L=[]
-    #my_filter = {}
-    #my_filter[categorie] = choix 
-    #ma_liste = Films.objects.filter(**my_filter)
-    #for film in ma_liste:
-     #   L.append(film.titre_original)
         
     return render(request, 'films/choix.html', locals())
 
@@ -52,28 +44,24 @@ def preference(request):
 def api_formulaire(request):
     params = request.GET
     L=[]
-    my_filter = {}
-   # my_filter[params['categorie_pays']] = params['choix_pays'] 
-    #ma_liste = Films.objects.filter(**my_filter)
-    if 'choix_pays' == 'Peu importe !':
-      L=Films.objects.all()
-    else :
-      ma_liste = Films.objects.filter(pays__contains=params['choix_pays'], genre__contains=params['choix_genre']) #pays = params['choix_pays'], genre = params['choix_genre'])
-      for film in ma_liste:
-        L.append([film.titre_original,
-                  film.titre_francais,
-                  film.realisateur,
-                  film.couleur,
-                  str(film.annee),
-                  film.pays,
-                  film.genre,
-                  film.acteurs,
-                  film.actrices,
-                  film.appreciation,
-                  film.scenario,
-                  film.provenance,
-                  film.photographie,
-                  film.musique])
+    
+    ma_liste = Films.objects.filter(pays__contains=params['choix_pays'], genre__contains=params['choix_genre'], couleur__contains=params['choix_couleur'], annee__range=(params['choix_datemin'],params['choix_datemax']))
+    for film in ma_liste:
+      if (params['choix_act1'] in str(film.acteurs) or params['choix_act1'] in str(film.actrices)):
+          L.append([film.titre_original,
+                    film.titre_francais,
+                    film.realisateur,
+                    film.couleur,
+                    str(film.annee),
+                    film.pays,
+                    film.genre,
+                    film.acteurs,
+                    film.actrices,
+                    film.appreciation,
+                    film.scenario,
+                    film.provenance,
+                    film.photographie,
+                    film.musique])
                   
     random=randint(0,len(L)-1)
 

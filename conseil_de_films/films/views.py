@@ -54,8 +54,11 @@ def api_formulaire(request):
     my_filter = {}
    # my_filter[params['categorie_pays']] = params['choix_pays'] 
     #ma_liste = Films.objects.filter(**my_filter)
-    ma_liste = Films.objects.filter(pays = params['choix_pays'], genre = params['choix_genre'])
-    for film in ma_liste:
+    if 'choix_pays' == 'Peu importe !':
+      L=Films.objects.all()
+    else :
+      ma_liste = Films.objects.filter(pays = params['choix_pays'], genre = params['choix_genre'])
+      for film in ma_liste:
         L.append([film.titre_original,
                   film.titre_francais,
                   film.realisateur,
@@ -70,27 +73,6 @@ def api_formulaire(request):
                   film.provenance,
                   film.photographie,
                   film.musique])
-
-    '''pays = params['choix_pays']
-    if (pays == 'Peu importe !'):
-      L1 = Films.objects.all()
-    else :
-      for film in Films.objects.all() :
-        if (pays in film.pays):
-          L1.append([film.titre_original,
-                    film.titre_francais,
-                    film.realisateur,
-                    film.couleur,
-                    str(film.annee),
-                    film.pays,
-                    film.genre,
-                    film.acteurs,
-                    film.actrices,
-                    film.appreciation,
-                    film.scenario,
-                    film.provenance,
-                    film.photographie,
-                    film.musique])'''
 
     resp={
             "data":

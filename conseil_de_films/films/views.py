@@ -66,7 +66,8 @@ def api_formulaire(request):
     random=randint(0,len(L)-1)
 
     resp={
-            "data":L  ,          
+            "data":L  ,
+            "titre_original":L[random][0],         
             "titre_francais":L[random][1],
             "realisateur":L[random][2]
     

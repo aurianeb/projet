@@ -63,13 +63,25 @@ def api_formulaire(request):
                     film.photographie,
                     film.musique])
                   
-    random=randint(0,len(L)-1)
+    if len(L)==0 :
+        resp={
+            "data":L,
+            "msg1": "Désolé mais nous n'avons pas trouvé de film correspondant à vos critères",
+            "msg2":"",
+            "titre_original":"",         
+            "titre_francais":"",
+            "realisateur":""
+        }
+    else : 
+        random=randint(0,len(L)-1)
 
-    resp={
-            "data":L  ,
+        resp={
+            "data":L,
+            "msg1":"Le film proposé est : ",
+            "msg2":" de ",
             "titre_original":L[random][0],         
             "titre_francais":L[random][1],
             "realisateur":L[random][2]
     
-    }
+        }
     return Response(resp)

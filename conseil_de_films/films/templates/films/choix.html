@@ -208,7 +208,7 @@
                                     <button type="button" onclick="getFormValue()" class="btn btn-large btn-primary"> Envoyer </button>
 
                                     <!-- Trigger the modal with a button -->
-                                    <button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal">J'ai de la chance</button>
+                                    <button type="button" onclick="getFormValue()" class="btn btn-info" data-toggle="modal" data-target="#myModal">J'ai de la chance</button>
 
                                      <!--<button type="button" onclick="affiche()" class="btn btn-large btn-success"> J'ai de la chance</button>-->
 
@@ -365,7 +365,12 @@
                     titre_original = resultat.titre_original;
 
 					realisateur = resultat.realisateur;
-					var texte= "<h1><font face= 'Lobster'> le film proposé est  " + titre_original + " de "+ realisateur+"</font></h1>";
+                    msg1 = resultat.msg1;
+                    msg2 = resultat.msg2;
+
+
+					var texte = "<h1><font face= 'Lobster'> " + msg1 + titre_original + msg2 + realisateur+"</font></h1>";
+                    
                     document.getElementById("affiche").innerHTML=texte;
                 }
             })

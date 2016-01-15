@@ -12,6 +12,7 @@
     <title>Qu'est-ce qu'on regarde ce soir ?</title>
 
     {% load static %}
+	<link href="http://fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext" rel="stylesheet" type="text/css">
     <!-- Bootstrap Core CSS -->
     <link href="{% static 'bower_components/bootstrap/dist/css/bootstrap.min.css' %}" rel="stylesheet">
 
@@ -56,6 +57,7 @@
                     <span class="icon-bar"></span>
                 </button>
                 <a class="navbar-brand" href="index.html">Qu'est-ce qu'on regarde ce soir ?</a>
+				
             </div>
             <!-- /.navbar-header -->
             <!-- /.navbar-top-links -->
@@ -204,8 +206,11 @@
                                     </div>
 
                                     <button type="button" onclick="getFormValue()" class="btn btn-large btn-primary"> Envoyer </button>
-									<button type="button" onclick="affiche()" class="btn btn-large btn-primary">J'ai de la chance</button>
-                            </form>
+									
+										<div id="hannah"></div>
+							
+
+						   </form>
                         </div>
                         <!-- /.panel-body -->
                     </div>
@@ -333,14 +338,14 @@
                     titre_original = resultat.titre_original;
 
 					realisateur = resultat.realisateur;
+					var texte= "<h1><font face= 'Lobster'> le film proposé est  " + titre_original + " de "+ realisateur+"</font></h1>";
+					document.getElementById("hannah").innerHTML=texte;
                 }
             })
         
         }
 
-		function affiche(){
-			alert("le film proposé est "+ titre_original +" un film de "+ realisateur);
-		}
+
 		
         function populateDB(dataDB){
             console.log(dataDB)

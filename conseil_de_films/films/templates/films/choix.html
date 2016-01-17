@@ -338,7 +338,7 @@
             
         });
         
-        deja_vu = []
+        *deja_vu = []
         console.log(deja_vu)
         
         function getFormValue(){
@@ -361,7 +361,7 @@
             console.log({{deja_vu}})
             $.ajax({
                 url:'api/formulaire/',
-                data: { 'choix_pays': choix_pays,'choix_genre': choix_genre, 'choix_couleur': choix_couleur, 'choix_datemin': choix_datemin, 'choix_datemax': choix_datemax, 'choix_act1': choix_act1}, 
+                data: { 'choix_pays': choix_pays,'choix_genre': choix_genre, 'choix_couleur': choix_couleur, 'choix_datemin': choix_datemin, 'choix_datemax': choix_datemax, 'choix_act1': choix_act1, 'deja_vu':deja_vu}, 
                 success : function(resultat, statut){ // code_html contient le HTML renvoyé
                     var data = resultat.responseText
                     //console.log(data)
@@ -374,6 +374,7 @@
 					realisateur = resultat.realisateur;
                     msg1 = resultat.msg1;
                     msg2 = resultat.msg2;
+                    *deja_vu = resultat.deja_vu
 
 					var texte = "<h1><font face= 'Lobster'> " + msg1 + titre_original + msg2 + realisateur+"</font></h1>";
                     

@@ -47,7 +47,6 @@ def preference(request):
 @api_view(['GET', 'POST'])
 def api_formulaire(request):
     params = request.GET
-    deja_vu = request.GET.getlist('deja_vu')
     L=[]
     
     ma_liste = Films.objects.filter(pays__contains=params['choix_pays'], genre__contains=params['choix_genre'], couleur__contains=params['choix_couleur'], annee__range=(params['choix_datemin'],params['choix_datemax']))
@@ -77,8 +76,7 @@ def api_formulaire(request):
             "msg2":"",
             "titre_original":"",         
             "titre_francais":"",
-            "realisateur":"",
-            "deja_vu":deja_vu
+            "realisateur":""
         }
 
     else :
@@ -91,7 +89,6 @@ def api_formulaire(request):
             "msg2":" de ",
             "titre_original":L[random][0],         
             "titre_francais":L[random][1],
-            "realisateur":L[random][2],
-            "deja_vu":deja_vu
+            "realisateur":L[random][2]
         }
     return Response(resp)

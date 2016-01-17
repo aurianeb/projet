@@ -202,11 +202,11 @@
                                     </select>
 
                                     <label>Un acteur, une actrice préféré ?</label>
-                                        <input type="text" class="form-control" id="choix_act1">
+                                        <input type="text" class="form-control" placeholder="Attention à mettre les la majuscule au début du nom !" id="choix_act1">
                                     </div>
-
+<!--
                                     <button type="button" onclick="getFormValue()" class="btn btn-large btn-primary"> Envoyer </button>
-
+-->
                                     <!-- Trigger the modal with a button -->
                                     <button type="button" onclick="getFormValue()" class="btn btn-info" data-toggle="modal" data-target="#myModal">J'ai de la chance</button>
 
@@ -229,7 +229,7 @@
                                               </div>
                                               <div class="modal-footer">
                                                 <button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
-                                                <button type="button" onclick="getFormValue()" class="btn btn-default">Suivant</button>
+                                                <button type="button" onclick="getFormValue()" class="btn btn-default" >Suivant</button>
                                               </div>
                                             </div>
 
@@ -338,6 +338,9 @@
             
         });
         
+        deja_vu = []
+        console.log(deja_vu)
+        
         function getFormValue(){
             var choix_pays = $("#choix_pays").val()
             var choix_genre = $("#choix_genre").val()
@@ -347,20 +350,22 @@
             var choix_act1 = $("#choix_act1").val()
 
 
-            console.log(choix_pays)
-            console.log(choix_genre)
-            console.log(choix_couleur)
-            console.log(choix_datemin)
-            console.log(choix_datemax)
-            console.log(choix_act1)
+            //console.log(choix_pays)
+            //console.log(choix_genre)
+            //console.log(choix_couleur)
+            //console.log(choix_datemin)
+            //console.log(choix_datemax)
+            //console.log(choix_act1)
 
+
+            console.log({{deja_vu}})
             $.ajax({
                 url:'api/formulaire/',
                 data: { 'choix_pays': choix_pays,'choix_genre': choix_genre, 'choix_couleur': choix_couleur, 'choix_datemin': choix_datemin, 'choix_datemax': choix_datemax, 'choix_act1': choix_act1}, 
                 success : function(resultat, statut){ // code_html contient le HTML renvoyé
                     var data = resultat.responseText
-                    console.log(data)
-                    console.log(resultat)
+                    //console.log(data)
+                    //console.log(resultat)
                     //populateDB(resultat['data'])
 
                     titre_francais = resultat.titre_francais;
@@ -370,13 +375,17 @@
                     msg1 = resultat.msg1;
                     msg2 = resultat.msg2;
 
-
 					var texte = "<h1><font face= 'Lobster'> " + msg1 + titre_original + msg2 + realisateur+"</font></h1>";
                     
                     document.getElementById("affiche").innerHTML=texte;
                 }
-            })
+
+                })
         
+        }
+
+        function oubli(){
+            deja_vu = [];
         }
 
 

@@ -11,6 +11,8 @@ from django.shortcuts import render
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 
+
+
 def create_DB(request):
     
     #A partir du tableau excel creation d'un tableau python pour la base de donnees
@@ -40,6 +42,8 @@ def preference(request):
         
     return render(request, 'films/choix.html', locals())
 
+
+
 @api_view(['GET', 'POST'])
 def api_formulaire(request):
     params = request.GET
@@ -62,7 +66,9 @@ def api_formulaire(request):
                     film.provenance,
                     film.photographie,
                     film.musique])
-                  
+
+
+
     if len(L)==0 :
         resp={
             "data":L,
@@ -72,7 +78,9 @@ def api_formulaire(request):
             "titre_francais":"",
             "realisateur":""
         }
-    else : 
+
+    else :
+
         random=randint(0,len(L)-1)
 
         resp={
@@ -82,6 +90,5 @@ def api_formulaire(request):
             "titre_original":L[random][0],         
             "titre_francais":L[random][1],
             "realisateur":L[random][2]
-    
         }
     return Response(resp)

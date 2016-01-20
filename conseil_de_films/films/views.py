@@ -48,6 +48,7 @@ def preference(request):
 def api_formulaire(request):
     params = request.GET
     L=[]
+    deja_vu=int(params['deja_vu'])
     
     ma_liste = Films.objects.filter(pays__contains=params['choix_pays'], genre__contains=params['choix_genre'], couleur__contains=params['choix_couleur'], annee__range=(params['choix_datemin'],params['choix_datemax']))
     for film in ma_liste:
@@ -67,8 +68,6 @@ def api_formulaire(request):
                     film.photographie,
                     film.musique])
 
-
-
     if len(L)==0 :
         resp={
             "data":L,
@@ -76,19 +75,33 @@ def api_formulaire(request):
             "msg2":"",
             "titre_original":"",         
             "titre_francais":"",
-            "realisateur":""
+            "realisateur":"",
+            "deja_vu":deja_vu
+        }
+
+    elif deja_vu >= len(L):
+        resp={
+            "data":L,
+            "msg1": "Désolé mais nous n'avons pas d'autre film à vous proposer",
+            "msg2":"",
+            "titre_original":"",         
+            "titre_francais":"",
+            "realisateur":"",
+            "deja_vu":deja_vu
         }
 
     else :
 
-        random=randint(0,len(L)-1)
+        #random=randint(0,len(L)-1)
+
 
         resp={
             "data":L,
             "msg1":"Le film proposé est : ",
             "msg2":" de ",
-            "titre_original":L[random][0],         
-            "titre_francais":L[random][1],
-            "realisateur":L[random][2]
+            "titre_original":L[deja_vu][0],         
+            "titre_francais":L[deja_vu][1],
+            "realisateur":L[deja_vu][2],
+            "deja_vu":deja_vu+1
         }
     return Response(resp)

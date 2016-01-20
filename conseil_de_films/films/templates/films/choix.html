@@ -228,7 +228,7 @@
                                                 <div id="affiche"></div>
                                               </div>
                                               <div class="modal-footer">
-                                                <button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
+                                                <button type="button" class="btn btn-default" onclick="exit()" data-dismiss="modal">Fermer</button>
                                                 <button type="button" onclick="getFormValue()" class="btn btn-default" >Suivant</button>
                                               </div>
                                             </div>
@@ -338,6 +338,8 @@
             
         });
         
+        var deja_vu = 0
+        console.log("Initialisation : " + deja_vu)
         
         function getFormValue(){
             var choix_pays = $("#choix_pays").val()
@@ -346,35 +348,45 @@
             var choix_datemin = $("#choix_datemin").val()
             var choix_datemax = $("#choix_datemax").val()
             var choix_act1 = $("#choix_act1").val()
-            //console.log(choix_pays)
+
+
+            console.log(choix_pays)
             //console.log(choix_genre)
             //console.log(choix_couleur)
             //console.log(choix_datemin)
             //console.log(choix_datemax)
             //console.log(choix_act1)
+            console.log("Deja vu avant requete : " + deja_vu)
+
             $.ajax({
                 url:'api/formulaire/',
-                data: { 'choix_pays': choix_pays,'choix_genre': choix_genre, 'choix_couleur': choix_couleur, 'choix_datemin': choix_datemin, 'choix_datemax': choix_datemax, 'choix_act1': choix_act1}, 
+                data: { 'choix_pays': choix_pays,'choix_genre': choix_genre, 'choix_couleur': choix_couleur, 'choix_datemin': choix_datemin, 'choix_datemax': choix_datemax, 'choix_act1': choix_act1, 'deja_vu': deja_vu}, 
                 success : function(resultat, statut){ // code_html contient le HTML renvoyé
                     var data = resultat.responseText
                     //console.log(data)
                     //console.log(resultat)
                     //populateDB(resultat['data'])
+
                     titre_francais = resultat.titre_francais;
                     titre_original = resultat.titre_original;
+
                     realisateur = resultat.realisateur;
                     msg1 = resultat.msg1;
                     msg2 = resultat.msg2;
-                    
+                    deja_vu = resultat.deja_vu;
+                    console.log("Deja vu apres requete : " + deja_vu)
+
                     var texte = "<h1><font face= 'Lobster'> " + msg1 + titre_original + msg2 + realisateur+"</font></h1>";
                     
                     document.getElementById("affiche").innerHTML=texte;
                 }
+
                 })
+
+            }
         
-        }
-        function oubli(){
-            deja_vu = [];
+        function exit(){
+            deja_vu = 0;
         }
         
         function populateDB(dataDB){

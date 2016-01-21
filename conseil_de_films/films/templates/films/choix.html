@@ -223,6 +223,8 @@
                                                 <h4 class="modal-title">La suggestion du chef !</h4>
                                                 <a class="navbar-brand" href="/films/accueil">Revenir en arrière</a>
 												<a class="navbar-brand" id="linkToGoogle" href="google" >Lien Google</a>
+												<a class="navbar-brand" id="linkToGoogle2" href="google" >bande d'annonce</a>
+                                             
                                               </div>
                                               <div class="modal-body">
                                                 <!--<p>Some text in the modal.</p>-->
@@ -380,7 +382,8 @@
                     var texte = "<h1><font face= 'Lobster'> " + msg1 + titre_original + msg2 + realisateur+"</font></h1>";
                     document.getElementById("affiche").innerHTML=texte;
 					document.getElementById("linkToGoogle").setAttribute("href", "http://google.fr/search?q=" + titre_original)
-                    
+                    document.getElementById("linkToGoogle2").setAttribute("href", "https://www.youtube.com/results?search_query=" + "bande d'annonce " +titre_original)
+					
                 }
 
                 })

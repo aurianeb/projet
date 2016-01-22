@@ -34,13 +34,6 @@
     <!-- Custom Fonts -->
     <link href="{% static 'bower_components/font-awesome/css/font-awesome.min.css' %}" rel="stylesheet" type="text/css">
 
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
-
 </head>
 
 <body>
@@ -91,10 +84,7 @@
                         <div class="panel-body">
                             <form role="form">
                                 <div class="form-group">
-                                   <!-- <label> Pays </label>
-                                    <select class="form-control" id="categorie_pays">
-                                        <option>pays</option>
-                                    </select> -->
+
                                     <label> Pays </label>
                                     <select class="form-control" id="choix_pays">
                                         <option> </option>
@@ -128,10 +118,7 @@
                                         <option>USA</option>
                                         <option>Yougoslavie</option>
                                     </select>
-                                 <!--   <label> Genre </label>
-                                    <select class="form-control" id="categorie_genre">
-                                        <option>genre</option>
-                                    </select> -->
+
                                     <label> Genre </label>
                                     <select class="form-control" id="choix_genre">
                                         <option> </option>
@@ -202,15 +189,11 @@
                                     </select>
 
                                     <label>Un acteur, une actrice préféré ?</label>
-                                        <input type="text" class="form-control" placeholder="Attention à mettre les la majuscule au début du nom !" id="choix_act1">
+                                        <input type="text" class="form-control" placeholder="Attention à mettre la majuscule au début du nom !" id="choix_act1">
                                     </div>
-<!--
-                                    <button type="button" onclick="getFormValue()" class="btn btn-large btn-primary"> Envoyer </button>
--->
+
                                     <!-- Trigger the modal with a button -->
                                     <button type="button" onclick="getFormValue()" class="btn btn-info" data-toggle="modal" data-target="#myModal">J'ai de la chance</button>
-
-                                     <!--<button type="button" onclick="affiche()" class="btn btn-large btn-success"> J'ai de la chance</button>-->
 
                                         <!-- Modal -->
                                         <div id="myModal" class="modal fade" role="dialog">

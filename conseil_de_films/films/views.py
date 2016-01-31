@@ -1,4 +1,3 @@
-#-*- coding: utf-8 -*-
 from django.shortcuts import render
 import xlrd
 from films.models import Films
@@ -39,6 +38,7 @@ def create_DB(request):
 
 
 def preference(request):
+    #Redirige vers la page html choix à l'appel de /films/accueil
         
     return render(request, 'films/choix.html', locals())
 
@@ -46,10 +46,13 @@ def preference(request):
 
 @api_view(['GET', 'POST'])
 def api_formulaire(request):
+
+    #On acquérit les préférences de l'internaute
     params = request.GET
     L=[]
     deja_vu=int(params['deja_vu'])
     
+    #On filtre les films ne répondant pas aux critères
     ma_liste = Films.objects.filter(pays__contains=params['choix_pays'], genre__contains=params['choix_genre'], couleur__contains=params['choix_couleur'], annee__range=(params['choix_datemin'],params['choix_datemax']))
     for film in ma_liste:
       if (params['choix_act1'] in str(film.acteurs) or params['choix_act1'] in str(film.actrices)):
@@ -68,6 +71,7 @@ def api_formulaire(request):
                     film.photographie,
                     film.musique])
 
+    #Si aucun film ne correspond
     if len(L)==0 :
         resp={
             "data":L,
@@ -78,7 +82,7 @@ def api_formulaire(request):
             "realisateur":"",
             "deja_vu":deja_vu
         }
-
+    #Si les films correspondant ont déjà tous été proposés
     elif deja_vu >= len(L):
         resp={
             "data":L,
@@ -90,10 +94,8 @@ def api_formulaire(request):
             "deja_vu":deja_vu
         }
 
+    #S'il reste des films à proposer
     else :
-
-        #random=randint(0,len(L)-1)
-
 
         resp={
             "data":L,

@@ -1,6 +1,6 @@
 from django.db import models
 
-# Create your models here.
+# Notre modèle : Un film est caractérisé par les critères fournis dans la base de données
 class Films(models.Model):
     titre_original = models.CharField(max_length=100)
     titre_francais = models.CharField(max_length=100)

@@ -214,9 +214,9 @@
                                               
 											  
 											  <div class="modal-body">
-												<a class="navbar-brand" id="linkToGoogle" href="google" ><img src="{% static 'photo/tn_wikipedia.png' %}" alt="wikipedia" ></a>
+												<a class="navbar-brand" id="linkToWikipedia" href="google" ><img src="{% static 'photo/tn_wikipedia.png' %}" alt="wikipedia" ></a>
 												</div><div class="modal-body">
-												<a class="navbar-brand" id="linkToGoogle2" href="google" ><img src="{% static 'photo/tn_allocine.png' %}" alt="allocine" ></a>
+												<a class="navbar-brand" id="linkToAllocine" href="google" ><img src="{% static 'photo/tn_allocine.png' %}" alt="allocine" ></a>
                                              </div></div>
                                               <div class="modal-footer">
                                                 <button type="button" class="btn btn-default" onclick="exit()" data-dismiss="modal">Fermer</button>
@@ -297,8 +297,8 @@
                     document.getElementById("affiche").innerHTML=texte;
 
                     //On génère les liens vers Wikipédia et Allociné
-					document.getElementById("linkToGoogle").setAttribute("href", "https://fr.wikipedia.org/w/index.php?search=" + titre_original)
-                    document.getElementById("linkToGoogle2").setAttribute("href", "http://www.allocine.fr/recherche/?q="  +titre_original)
+					document.getElementById("linkToWikipedia").setAttribute("href", "https://fr.wikipedia.org/w/index.php?search=" + titre_original)
+                    document.getElementById("linkToAllocine").setAttribute("href", "http://www.allocine.fr/recherche/?q="  +titre_original)
 					
                 }
 

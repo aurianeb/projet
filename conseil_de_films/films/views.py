@@ -49,14 +49,14 @@ def api_formulaire(request):
 
     #On acquérit les préférences de l'internaute
     params = request.GET
-    L=[]
+    Films_possibles=[]
     deja_vu=int(params['deja_vu'])
     
     #On filtre les films ne répondant pas aux critères
-    ma_liste = Films.objects.filter(pays__contains=params['choix_pays'], genre__contains=params['choix_genre'], couleur__contains=params['choix_couleur'], annee__range=(params['choix_datemin'],params['choix_datemax']))
-    for film in ma_liste:
+    Liste_filtree_1 = Films.objects.filter(pays__contains=params['choix_pays'], genre__contains=params['choix_genre'], couleur__contains=params['choix_couleur'], annee__range=(params['choix_datemin'],params['choix_datemax']))
+    for film in Liste_filtree_1:
       if (params['choix_act1'] in str(film.acteurs) or params['choix_act1'] in str(film.actrices)):
-          L.append([film.titre_original,
+          Films_possibles.append([film.titre_original,
                     film.titre_francais,
                     film.realisateur,
                     film.couleur,
@@ -72,9 +72,9 @@ def api_formulaire(request):
                     film.musique])
 
     #Si aucun film ne correspond
-    if len(L)==0 :
+    if len(Films_possibles)==0 :
         resp={
-            "data":L,
+            "data":Films_possibles,
             "msg1": "Désolé mais nous n'avons pas trouvé de film correspondant à vos critères",
             "msg2":"",
             "titre_original":"",         
@@ -83,9 +83,9 @@ def api_formulaire(request):
             "deja_vu":deja_vu
         }
     #Si les films correspondant ont déjà tous été proposés
-    elif deja_vu >= len(L):
+    elif deja_vu >= len(Films_possibles):
         resp={
-            "data":L,
+            "data":Films_possibles,
             "msg1": "Désolé mais nous n'avons pas d'autre film à vous proposer",
             "msg2":"",
             "titre_original":"",         
@@ -98,12 +98,12 @@ def api_formulaire(request):
     else :
 
         resp={
-            "data":L,
+            "data":Films_possibles,
             "msg1":"Le film proposé est : ",
             "msg2":" de ",
-            "titre_original":L[deja_vu][0],         
-            "titre_francais":L[deja_vu][1],
-            "realisateur":L[deja_vu][2],
+            "titre_original":Films_possibles[deja_vu][0],         
+            "titre_francais":Films_possibles[deja_vu][1],
+            "realisateur":Films_possibles[deja_vu][2],
             "deja_vu":deja_vu+1
         }
     return Response(resp)
